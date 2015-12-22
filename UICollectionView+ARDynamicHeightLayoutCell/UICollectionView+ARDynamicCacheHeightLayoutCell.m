@@ -92,6 +92,11 @@ typedef NS_ENUM(NSUInteger, ARDynamicSizeCaculateType) {
     if (hasCache) {
         [sectionCache replaceObjectAtIndex:indexPath.row withObject:sizeValue];
     }else{
+        
+        for (NSUInteger i = sectionCache.count; i < indexPath.row; i++) {
+            [sectionCache insertObject:ARLayoutCellInvalidateValue atIndex:i];
+        }
+        
         [sectionCache insertObject:sizeValue atIndex:indexPath.row];
     }
     return size;
